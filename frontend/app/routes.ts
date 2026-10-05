@@ -21,4 +21,3 @@ index(
 ]),
 
 ] satisfies RouteConfig;
-

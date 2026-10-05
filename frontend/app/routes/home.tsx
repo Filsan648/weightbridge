@@ -1,6 +1,7 @@
 import type { Route } from "./+types/home";
 import { Welcome } from "../welcome/welcome";
 import Login from "../pages/Login/LoginPage";
+import DemoPage from "../pages/User/page";
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "New React Router App" },
@@ -9,5 +10,5 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <section className=" "> <Login /> </section>;
+  return <section className=" "> <DemoPage /> </section>;
 }
