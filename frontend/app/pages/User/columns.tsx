@@ -5,7 +5,6 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { Button } from "../../components/ui/button"
 import { type DataTableFeatures } from "../../Genearale/Table/data-table-features"
 import { Checkbox } from "../../components/ui/checkbox"
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,8 +16,10 @@ import {
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
+import { NavLink } from "react-router";
 
 export type User = {
+  id:number,
   name: string
   email: string
   telephone: string
@@ -103,13 +104,10 @@ export const columns = columnHelper.columns([
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => navigator.clipboard.writeText(user.email)}>
-              Copier l'email
-            </DropdownMenuItem>
+       
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Voir l'utilisateur</DropdownMenuItem>
-            <DropdownMenuItem>Modifier l'utilisateur</DropdownMenuItem>
-            <DropdownMenuItem>Supprimer l'utilisateur</DropdownMenuItem>
+           <NavLink to={`/admin/utilisateurs/${user.name}`}   state={{ userId: user.id }}> <DropdownMenuItem>   Voir </DropdownMenuItem></NavLink> 
+            <DropdownMenuItem>Supprimer </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

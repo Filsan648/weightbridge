@@ -16,8 +16,9 @@ layout("routes/layout.tsx",[
 index(
 "routes/home.tsx"
 ),
-
-
+route("/admin/utilisateurs","routes/user.tsx"
+),
+route("/admin/utilisateurs/:name","routes/viewList.tsx")
 ]),
 
 ] satisfies RouteConfig;

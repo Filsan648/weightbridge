@@ -1,8 +1,19 @@
- export const UserData = [
-    {
-        name: 'Filsan Fouad Youssouf',
-        email:'filsan.fouad.youssouf@example.com',
-        telephone:'+253 77 12 58 38',
-        derniere_connexion: '2023-10-01 09:00:00'
-    }
- ]
+  const data = [
+  {
+    id:1,
+    name: "John Doe",
+    email: "john.doe@example.com",
+    telephone: "+1 234 567 890",
+    derniere_connexion: "2023-10-01 09:00:00"
+  },
+  {
+    id:2,
+    name: "fohn Doe",
+    email: "fohn.doe@example.com",
+    telephone: "-1 234 567 890",
+    derniere_connexion: "2043-10-01 09:00:00"
+  },
+  // ...
+];
+
+export default data;
