@@ -9,8 +9,7 @@ export default function Layout() {
   return (
     <SidebarProvider open={open} onOpenChange={setOpen}>
       <AppSidebar />
-
-      <main className="flex-1">
+      <main className="flex-1 p-4">
         <header className="flex h-14 items-center gap-2 border-b px-4">
           <SidebarTrigger />
         </header>

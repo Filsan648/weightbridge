@@ -144,7 +144,7 @@ export function ViewUser({ user }: ViewUserProps) {
 
         </div>
 
-        <Separator />
+
 
         {/* Informations */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -241,20 +241,6 @@ export function ViewUser({ user }: ViewUserProps) {
 
         </div>
 
-        <Separator />
-
-        {/* ID utilisateur */}
-        <div className="space-y-2">
-
-          <p className="text-sm text-muted-foreground">
-            Identifiant utilisateur
-          </p>
-
-          <Badge variant="outline">
-            #{user.id}
-          </Badge>
-
-        </div>
 
       </CardContent>
     </Card>

@@ -1,5 +1,7 @@
 import { ChevronDown, LogOut , TruckIcon } from "lucide-react"
+
 import { NavLink, useLocation } from "react-router"
+
 import {
   Sidebar,
   SidebarContent,
@@ -14,11 +16,13 @@ import {
   SidebarRail,
   SidebarSeparator,
 } from "../../components/ui/sidebar"
+
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "~/components/ui/collapsible"
+
 import SidebarData from "../../utils/data/sidebardata"
 
 function AppSidebar() {
@@ -48,9 +52,6 @@ function AppSidebar() {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-
-      <SidebarSeparator />
-
       {/* ───────── Contenu ───────── */}
       <SidebarContent>
         {SidebarData.map((group) => (

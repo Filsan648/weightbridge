@@ -2,6 +2,7 @@ import type { Route } from "./+types/home";
 import { useLocation, useParams } from "react-router"
 import data from "../utils/data/userdata"
 import { ViewUser } from "../pages/User/viewuser";
+
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Users" },
