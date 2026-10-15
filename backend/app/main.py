@@ -14,3 +14,5 @@ def root():
 @app.get("/users")
 def get_users(db: Session = Depends(get_db)):
     return db.query(models.User).all()
+
+    
