@@ -1,18 +1,26 @@
-from fastapi import FastAPI, Depends
-from sqlalchemy.orm import Session
-from app.database import engine, get_db, Base
-from app import models
+from fastapi import FastAPI
 
-Base.metadata.create_all(bind=engine)
+from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI()
+from app.router.user_router import router as user_router
+import os
+Origin = os.getenv("CORS_ORIGINS")
 
+app = FastAPI(
+    title="WeighBridge API",
+    version="1.0.0"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=Origin.split(",") if Origin else ["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+app.include_router(user_router)
 @app.get("/")
 def root():
-    return {"message": "Backend FastAPI opérationnel"}
-
-@app.get("/users")
-def get_users(db: Session = Depends(get_db)):
-    return db.query(models.User).all()
-
-    
+    return {
+        "message": "WeighBridge API fonctionne"
+    }
