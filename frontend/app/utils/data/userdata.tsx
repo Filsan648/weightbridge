@@ -1,3 +1,15 @@
+  import {api} from "../api"  
+  import axios from "axios";
+
+
+export const getUsers= async () => {
+
+    const response = await api.get("/users/");
+
+    return response.data;
+};
+
+
   const data = [
   {
     id:1,
@@ -13,7 +25,7 @@
     telephone: "-1 234 567 890",
     derniere_connexion: "2043-10-01 09:00:00"
   },
-  // ...
+ 
 ];
 
 export default data;

@@ -1,0 +1,76 @@
+from sqlalchemy import (
+    Column,
+    Integer,
+    String,
+    Boolean,
+    DateTime,
+    ForeignKey,
+    Table,
+)
+from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
+
+from app.database.base import Base
+
+
+class Invitation(Base):
+    __tablename__ = "invitations"
+
+    id = Column(
+        Integer,
+        primary_key=True,
+        index=True,
+    )
+
+    token_hash = Column(
+        String(150),
+        nullable=False,
+        index=True,
+    )
+    revoked = Column(
+            Boolean,
+            nullable=False,
+            index=True,
+        )
+    user_id = Column(
+        Integer,
+        ForeignKey("users.id", ondelete="CASCADE"),
+        unique=True,
+        nullable=False,
+    )
+    expires_at = Column(
+        String(255),
+        unique=True,
+        nullable=False,
+        index=True,
+    )
+
+    accepted_at = Column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        nullable=False,
+    )
+    created_at = Column(
+            DateTime(timezone=True),
+            server_default=func.now(),
+            onupdate=func.now(),
+            nullable=False,
+        )
+
+    updated_at = Column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        onupdate=func.now(),
+        nullable=False,
+    )
+  
+
+
+    # --------------------------------------------------------
+    # Relation Invitation -> User
+    # --------------------------------------------------------
+
+    user = relationship(
+        "User",
+        back_populates="invitations",
+    )

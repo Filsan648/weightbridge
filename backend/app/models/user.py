@@ -83,3 +83,26 @@ class User(Base):
         "Role",
         back_populates="users",
     )
+    # --------------------------------------------------------
+    # Relation User -> Invitation
+    # --------------------------------------------------------
+    invitations = relationship(
+        "Invitation",
+        back_populates="users",
+    )
+    # --------------------------------------------------------
+    # Relation User -> RefreshToken
+    # --------------------------------------------------------
+    refresh_tokens = relationship(
+            "RefreshToken",
+            back_populates="users",
+        )
+    # --------------------------------------------------------
+    # Relation User -> AuditLog
+    # --------------------------------------------------------
+    audit_logs = relationship(
+            "AuditLog",
+            back_populates="users",
+        )
+
+
