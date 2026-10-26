@@ -24,6 +24,7 @@ class RefreshToken(Base):
 
     token_hash = Column(
         String(150),
+        unique=True,
         nullable=False,
         index=True,
     )
@@ -35,7 +36,7 @@ class RefreshToken(Base):
  
 
     expires_at = Column(
-        String(255),
+        DateTime(timezone=True),
         unique=True,
         nullable=False,
         index=True,
@@ -49,7 +50,7 @@ class RefreshToken(Base):
     created_at = Column(
             DateTime(timezone=True),
             server_default=func.now(),
-            onupdate=func.now(),
+           
             nullable=False,
         )
 
@@ -62,8 +63,8 @@ class RefreshToken(Base):
     user_id = Column(
         Integer,
         ForeignKey("users.id", ondelete="CASCADE"),
-        unique=True,
         nullable=False,
+        index=True
     )
 
 

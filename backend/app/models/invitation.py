@@ -9,7 +9,6 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-
 from app.database.base import Base
 
 
@@ -29,25 +28,25 @@ class Invitation(Base):
     )
     revoked = Column(
             Boolean,
+            default=False, 
+            server_default="false", 
             nullable=False,
             index=True,
         )
     user_id = Column(
         Integer,
         ForeignKey("users.id", ondelete="CASCADE"),
-        unique=True,
         nullable=False,
+        index=True
     )
     expires_at = Column(
-        String(255),
+        DateTime(timezone=True),
         unique=True,
         nullable=False,
         index=True,
     )
-
     accepted_at = Column(
         DateTime(timezone=True),
-        server_default=func.now(),
         nullable=False,
     )
     created_at = Column(
@@ -56,7 +55,6 @@ class Invitation(Base):
             onupdate=func.now(),
             nullable=False,
         )
-
     updated_at = Column(
         DateTime(timezone=True),
         server_default=func.now(),
@@ -64,8 +62,6 @@ class Invitation(Base):
         nullable=False,
     )
   
-
-
     # --------------------------------------------------------
     # Relation Invitation -> User
     # --------------------------------------------------------

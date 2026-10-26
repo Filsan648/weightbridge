@@ -35,9 +35,9 @@ class User(Base):
         index=True,
     )
 
-    password = Column(
+    hashed_password = Column(
         String(255),
-        nullable=False,
+        nullable=True,
     )
 
     telephone = Column(
@@ -48,19 +48,27 @@ class User(Base):
     role_id = Column(
         Integer,
         ForeignKey("roles.id", ondelete="SET NULL"),
+        index=True,
         nullable=True,
     )
 
-    actif = Column(
-        Boolean,
-        default=True,
+    UserStatus = Column(
+        String(50),
+        default="Invited",
         nullable=False,
     )
 
-    derniere_connexion = Column(
+    last_login_at = Column(
         DateTime(timezone=True),
         nullable=True,
     )
+    client_id = Column(
+            Integer,
+            ForeignKey("clients.id", ondelete="SET NULL"),
+            nullable=True,
+            index=True
+        )
+    
 
     created_at = Column(
         DateTime(timezone=True),
@@ -71,7 +79,6 @@ class User(Base):
     updated_at = Column(
         DateTime(timezone=True),
         server_default=func.now(),
-        onupdate=func.now(),
         nullable=False,
     )
 
@@ -81,28 +88,36 @@ class User(Base):
 
     role = relationship(
         "Role",
-        back_populates="users",
+        back_populates="user",
+    )
+    # --------------------------------------------------------
+    # Relation User -> Client
+    # --------------------------------------------------------
+    client = relationship(
+        "Client",
+        back_populates="user",
     )
     # --------------------------------------------------------
     # Relation User -> Invitation
     # --------------------------------------------------------
     invitations = relationship(
         "Invitation",
-        back_populates="users",
+        back_populates="user",
     )
     # --------------------------------------------------------
     # Relation User -> RefreshToken
     # --------------------------------------------------------
     refresh_tokens = relationship(
             "RefreshToken",
-            back_populates="users",
+            back_populates="V",
         )
     # --------------------------------------------------------
     # Relation User -> AuditLog
     # --------------------------------------------------------
     audit_logs = relationship(
             "AuditLog",
-            back_populates="users",
+            back_populates="user",
         )
+
 
 

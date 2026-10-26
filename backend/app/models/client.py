@@ -46,5 +46,11 @@ class Client(Base):
         onupdate=func.now(),
         nullable=False,
     )
-
+     # --------------------------------------------------------
+     # Relation Client -> User
+     # --------------------------------------------------------
+    user = relationship(
+        "User",
+        back_populates="client",
+    )
   

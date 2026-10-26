@@ -24,9 +24,9 @@ class AuditLog(Base):
 
     user_id = Column(
             Integer,
-            ForeignKey("users.id", ondelete="CASCADE"),
-            unique=True,
+            ForeignKey("users.id", ondelete="SET NULL"),
             nullable=False,
+            index=True
         )
 
     action = Column(
@@ -35,12 +35,6 @@ class AuditLog(Base):
     )
 
 
-    email = Column(
-        String(255),
-        unique=True,
-        nullable=False,
-        index=True,
-    )
 
     created_at = Column(
         DateTime(timezone=True),
@@ -60,6 +54,6 @@ class AuditLog(Base):
     # --------------------------------------------------------
 
     user = relationship(
-        "users",
+        "User",
         back_populates="audit_logs",
     )
